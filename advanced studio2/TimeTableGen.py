@@ -33,7 +33,7 @@ def RetriveLine(rows):
     # NOTE TO SELF: Need to add input validation at some point
     if val.lower() != "all":
         # set selection to user imput value
-        selection = int(val
+        selection = int(val)
         # get the requested line
         l = lines[selection - 1]
         # user imputs the departure time
@@ -79,12 +79,11 @@ def GenerateTimeTable(startTime, line):
     cursor.execute(retrive)
     rows = [x[0] for x in cursor.fetchall()]
     rails = []
-    # for each row print rows data, then append the row
+    # for each row append the row
     for row in rows:
         retrive = f"SELECT * FROM rails WHERE RailID = '{row}'"
         cursor.execute(retrive)
         railRows = cursor.fetchall()
-        print(railRows)
         for rR in railRows:
             rails.append(Rail(rR[0], rR[1], rR[2], rR[3], rR[4]))
     prior = ""
@@ -95,7 +94,6 @@ def GenerateTimeTable(startTime, line):
             for r in rails:
                 print(r.startStation, r.endStation)
                 if (r.startStation == prior and r.endStation == s.id) or (r.startStation == s.id and r.endStation == prior):
-                    print(r.length)
                     time += int(r.length)
         # update the timetable
         timeTable += [[f"{s.name}, {time}"]]
