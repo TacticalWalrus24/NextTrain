@@ -1,0 +1,1 @@
+import nexttrain.sql into favoured database of choice and edit line 4 of TimeTableGen.py using text document editor of choice to contain correct host/user/passwd
